@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+use App\Models\barang;
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $data=barang::all();
+        return view('index', compact('data'));
     }
 
     public function calendar()
@@ -15,6 +16,6 @@ class HomeController extends Controller
         return view('calendar');
     }
     
-    
+   
    
 }

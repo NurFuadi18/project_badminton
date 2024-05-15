@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register Akun</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
@@ -16,9 +16,9 @@
         
         <div class="menu">
             <ul>
-            <a href="#">Home</a>
-            <a href="#">Jadwal</a>
-            <a href="#">Data</a>
+            <a href="index">Home</a>
+            <a href="calendar">Jadwal</a>
+            <a href="databarang">Data</a>
         </div>
 </div>
 
@@ -43,6 +43,6 @@
    
         <input type="submit" value="Register">
     </form>
-<</div>
+</div>
 </body>
 </html>

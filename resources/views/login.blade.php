@@ -22,23 +22,30 @@
         </div>
 </div>
 
+<!-- login.blade.php -->
+
 <div class="login">
     <p>Login</p>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            {{ $errors->first('error') }}
+        </div>
+    @endif
     <form action="postlogin" method="POST">
-    {{ csrf_field() }}
-    <div class="input-group">
-        <label for="username">Username :</label>
-        <input type="text" id="username" name="email" required>
-    </div>
+        {{ csrf_field() }}
+        <div class="input-group">
+            <label for="username">Username :</label>
+            <input type="text" id="username" name="email" required>
+        </div>
 
-    <div class="input-group">
-        <label for="password">Password :</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    
-    <button type="submit">Login</button>
-</form>
-
+        <div class="input-group">
+            <label for="password">Password :</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <button type="submit">Login</button>
+    </form>
 </div>
+
 </body>
 </html>
