@@ -18,18 +18,24 @@
             <ul>
             <a href="index">Home</a>
             <a href="jadwal">Jadwal</a>
-            <a href="data">Data</a>
+            <a href="databarang">Data</a>
         </div>
 
         <div class="admin">
-            <p>Selamat Datang Admin!!</p>
+            @if (Auth::check())
+                <p>Selamat Datang, {{ Auth::user()->name }}!</p>
+            @else
+                <p>Selamat Datang, Tamu!</p>
+            @endif
         </div>
 
         <div class="dropdown">
            <span class="material-symbols-outlined">menu</span>
                 <div class="dropdown-content">
+                  <a href="register">Tambah Akun</a>
                   <a href="gantipassword">Data Akun</a>
                   <a href="login">Log Out</a>
+
          </div>
 </div>
 </div>
@@ -40,8 +46,27 @@
             <p>nanti isinya kalender jadwal pesan lapangan per minggu</p>
         </div>
         <div>
-            <h2>Stok Barang</h2>
-            <p>menampilkan stok barang</p>
+        <table class="table">
+        
+        <thead>
+            <tr>
+                <th>ID Barang</th>
+                <th>Nama Barang</th>
+                <th>Jenis</th>
+                <th>Jumlah</th>   
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($data as $barang)
+            <tr>
+                 <td>{{ $barang->id_barang }}</td>
+                 <td>{{ $barang->nama_barang }}</td>
+                 <td>{{ $barang->jenis }}</td>
+                 <td>{{ $barang->jumlah }}</td>              
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
         </div>
         <div>
             <h2>Lapangan 1</h2>
