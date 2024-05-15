@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
 
-   
+    
     /**
      * Nama tabel yang terkait dengan model.
      *
