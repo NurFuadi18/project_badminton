@@ -22,6 +22,7 @@ class BarangController extends Controller
         'id_barang' => 'required',
         'nama_barang' => 'required',
         'jenis' => 'required',
+        'harga' => 'required',
         'jumlah' => 'required|integer|min:1',
     ]);
 
@@ -30,6 +31,7 @@ class BarangController extends Controller
         'id_barang' => $request->id_barang,
         'nama_barang' => $request->nama_barang,
         'jenis' => $request->jenis,
+        'harga' => $request->harga,
         'jumlah' => $request->jumlah,
     ]);
 
@@ -49,6 +51,7 @@ public function edit($id)
         $request->validate([
             'nama_barang' => 'required',
             'jenis' => 'required',
+            'harga' => 'required',
             'jumlah' => 'required|integer',
         ]);
 

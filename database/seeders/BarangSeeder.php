@@ -13,12 +13,6 @@ class BarangSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('barang')->insert([
-            'id_barang' => '001',
-            'nama_barang' => 'Raket Yonex',
-            'jenis' => 'Alat',
-            'jumlah' => '5',
-            // tambahkan data lainnya sesuai kebutuhan
-        ]);
+        
     }
 }

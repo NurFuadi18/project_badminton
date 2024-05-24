@@ -44,36 +44,42 @@
 
 
 
-    <div class="container">
-        <h2>Daftar Barang</h2>
-        <table class="table">
-        
-            <thead>
-                <tr>
-                    <th>ID Barang</th>
-                    <th>Nama Barang</th>
-                    <th>Jenis</th>
-                    <th>Jumlah</th>
-                    <th>Edit</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-            @foreach($data as $barang)
-                <tr>
-                     <td>{{ $barang->id_barang }}</td>
-                     <td>{{ $barang->nama_barang }}</td>
-                     <td>{{ $barang->jenis }}</td>
-                     <td>{{ $barang->jumlah }}</td>
-                     <td>
-                     <a href="barang/{{$barang->id_barang}}/edit" class="btn btn-primary">Edit</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID Barang</th>
+            <th>Nama Barang</th>
+            <th>Jenis</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+            <th>Edit</th>
+            <th>Add to Cart</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach($data as $barang)
+        <tr>
+            <td>{{ $barang->id_barang }}</td>
+            <td>{{ $barang->nama_barang }}</td>
+            <td>{{ $barang->jenis }}</td>
+            <td>{{ $barang->harga }}</td>
+            <td>{{ $barang->jumlah }}</td>
+            <td>
+                <a href="barang/{{ $barang->id_barang }}/edit" class="btn btn-primary">Edit</a>
+            </td>
+            <td>
+            <form action="{{ route('cart.add') }}" method="POST">
+            @csrf
+                <input type="hidden" name="id_barang" value="{{ $barang->id_barang }}">
+                <input type="number" name="quantity" value="1" min="1" style="width: 50px;">
+                <button type="submit" class="btn btn-success">Add to Cart</button>
+            </form>
 
-                        </td>
-                     
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+            </td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
 
 
 
@@ -106,6 +112,10 @@
             <div class="form-group">
                 <label for="jumlah">Jenis Barang:</label>
                 <input type="text" class="form-control" id="jenis" name="jenis" required>
+            </div>
+            <div class="form-group">
+                <label for="jumlah">Harga Barang:</label>
+                <input type="text" class="form-control" id="harga" name="harga" required>
             </div>
             <div class="form-group">
                 <label for="jumlah">Jumlah Barang:</label>

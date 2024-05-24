@@ -13,7 +13,7 @@ class Barang extends Model
      *
      * @var string
      */
-    protected $table = 'barang';
+    protected $table = 'barangs';
     
     /**
      * Kolom-kolom yang dapat diisi secara massal.
@@ -21,7 +21,7 @@ class Barang extends Model
      * @var array
      */
     protected $fillable = [
-        'nama_barang', 'jenis', 'jumlah'
+        'nama_barang', 'jenis','harga', 'jumlah'
     ];
     protected $primaryKey = 'id_barang';
 }
