@@ -42,7 +42,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>United Badminton</h2>
+        <h2>Badminton Jaya</h2>
         <p><strong>ID Transaksi:</strong> {{ $transaction->id }}</p>
         <p><strong>Total:</strong> {{ $transaction->total }}</p>
 
