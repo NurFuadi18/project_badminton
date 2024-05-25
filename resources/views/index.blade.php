@@ -19,6 +19,8 @@
             <a href="index">Home</a>
             <a href="jadwal">Jadwal</a>
             <a href="databarang">Data</a>
+            <a href="cart">Cart</a>
+            </ul>
         </div>
 
         <div class="admin">
