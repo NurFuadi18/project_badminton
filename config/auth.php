@@ -64,6 +64,10 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+        'pelanggans' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\pelanggan::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
