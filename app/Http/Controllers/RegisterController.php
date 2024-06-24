@@ -19,6 +19,6 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
             'remember_token'=> Str::random(60),
         ]);
-        return redirect()->route('index');
+        return redirect()->route('login');
     }
 }

@@ -1,51 +1,51 @@
 <?php
-
 namespace App\Http\Controllers;
-use App\Models\barang;
+
+use App\Models\Barang;
+use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
-
-    public function tabelbarang()
+    public function tabelBarang()
     {
-       $data=barang::all();
-       return view('databarang', compact('data'));
+        $data = Barang::all();
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        $total = $cartItems->sum(function($item) {
+            return $item->harga * $item->quantity;
+        });
+
+        return view('databarang', compact('data', 'cartItems', 'total'));
     }
 
-
-
     public function store(Request $request)
-{
-    // Validasi data yang dikirimkan
-    $request->validate([
-        'id_barang' => 'required',
-        'nama_barang' => 'required',
-        'jenis' => 'required',
-        'harga' => 'required',
-        'jumlah' => 'required|integer|min:1',
-    ]);
-
-    // Simpan data barang ke database
-    barang::create([
-        'id_barang' => $request->id_barang,
-        'nama_barang' => $request->nama_barang,
-        'jenis' => $request->jenis,
-        'harga' => $request->harga,
-        'jumlah' => $request->jumlah,
-    ]);
-
-    // Redirect kembali ke halaman sebelumnya dengan pesan sukses
-    return redirect()->back()->with('success', 'Barang berhasil ditambahkan.');
-}
-
-public function edit($id)
     {
-        $barang = barang::find($id);
+        $request->validate([
+            'id_barang' => 'required',
+            'nama_barang' => 'required',
+            'jenis' => 'required',
+            'harga' => 'required',
+            'jumlah' => 'required|integer|min:1',
+        ]);
+
+        Barang::create([
+            'id_barang' => $request->id_barang,
+            'nama_barang' => $request->nama_barang,
+            'jenis' => $request->jenis,
+            'harga' => $request->harga,
+            'jumlah' => $request->jumlah,
+        ]);
+
+        return redirect()->back()->with('success', 'Barang berhasil ditambahkan.');
+    }
+
+    public function edit($id)
+    {
+        $barang = Barang::find($id);
         return view('editbarang', compact('barang'));
     }
 
-    // Method untuk mengupdate data barang
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -62,6 +62,4 @@ public function edit($id)
 
         return redirect()->route('databarang')->with('success', 'Data barang berhasil diperbarui.');
     }
-
-
 }

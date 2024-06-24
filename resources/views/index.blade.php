@@ -80,10 +80,6 @@
                         <div class="number">{{ $jumlahAdmin }}</div>
                         <div class="label">Jumlah Admin</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="number">{{ $pendapatanPerMinggu }}</div>
-                        <div class="label">Pendapatan Per Minggu</div>
-                    </div>
                 </div>
             </div>
         </div>

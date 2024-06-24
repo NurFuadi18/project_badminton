@@ -104,7 +104,7 @@
 
 <div class="vid-container">
     <video class="bgvid" autoplay loop muted>
-        <source src="{{ asset('videos/backlogin.mp4') }}" type="video/mp4">
+        <source src="{{ asset('videos/backloginfix.mp4') }}" type="video/mp4">
     </video>
     <div class="inner-container">
         <div class="box">

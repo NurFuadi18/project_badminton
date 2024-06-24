@@ -42,51 +42,46 @@ class CartController extends Controller
         }
     }
 
+    public function index()
+    {
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        $total = $cartItems->sum(function($item) {
+            return $item->harga * $item->quantity;
+        });
 
-
-public function index()
-{
-    $cartItems = Cart::where('user_id', Auth::id())->get();
-
-    $total = $cartItems->sum(function($item) {
-        return $item->harga * $item->quantity;
-    });
-
-    return view('barangs.cart', compact('cartItems', 'total'));
-}
-
-
-public function checkout()
-{
-    $cartItems = Cart::where('user_id', Auth::id())->get();
-    if ($cartItems->isEmpty()) {
-        return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
+        return view('barangs.cart', compact('cartItems', 'total'));
     }
 
-    $total = $cartItems->sum(function($item) {
-        return $item->harga * $item->quantity;
-    });
+    public function checkout()
+    {
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
+        }
 
-    $transaction = Transaction::create([
-        'user_id' => Auth::id(),
-        'total' => $total
-    ]);
+        $total = $cartItems->sum(function($item) {
+            return $item->harga * $item->quantity;
+        });
 
-    foreach ($cartItems as $item) {
-        TransactionItem::create([
-            'transaction_id' => $transaction->id,
-            'barang_id' => $item->barang_id,
-            'nama_barang' => $item->nama_barang,
-            'harga' => $item->harga,
-            'quantity' => $item->quantity,
+        $transaction = Transaction::create([
+            'user_id' => Auth::id(),
+            'total' => $total
         ]);
+
+        foreach ($cartItems as $item) {
+            TransactionItem::create([
+                'transaction_id' => $transaction->id,
+                'barang_id' => $item->barang_id,
+                'nama_barang' => $item->nama_barang,
+                'harga' => $item->harga,
+                'quantity' => $item->quantity,
+            ]);
+        }
+
+        Cart::where('user_id', Auth::id())->delete();
+
+        return redirect()->route('transaction.show', $transaction->id)->with('success', 'Transaksi berhasil');
     }
-
-    // Clear the cart
-    Cart::where('user_id', Auth::id())->delete();
-
-    return redirect()->route('transaction.show', $transaction->id)->with('success', 'Transaksi berhasil');
-}
 
     public function remove($id)
     {
@@ -99,5 +94,4 @@ public function checkout()
 
         return redirect()->route('cart.index')->with('error', 'Item not found in cart');
     }
-    
 }

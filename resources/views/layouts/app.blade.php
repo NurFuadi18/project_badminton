@@ -147,13 +147,16 @@
         <div class="sidebar-title">Badminton Jaya</div>
         <ul class="sidebar-menu">
             <li class="sidebar-menu-item"><a href="/">Home</a></li>
-            <li class="sidebar-menu-item"><a href="/booking">Booking</a></li>
+            <li class="sidebar-menu-item"><a href="/bookings">Booking</a></li>
             <li class="sidebar-menu-item"><a href="/databarang">Data</a></li>
             <li class="sidebar-menu-item"><a href="/cart">Cart</a></li>
             <li class="sidebar-menu-item"><a href="/register">Tambah Akun</a></li>
+            <li class="sidebar-menu-item"><a href="/lapangan">Manajemen Lapangan</a></li>
+            <li class="sidebar-menu-item"><a href="/pendapatan">Pendapatan</a></li>
             <li class="sidebar-menu-item"><a href="/laporan">Laporan</a></li>
             <li class="sidebar-menu-item"><a href="/gantipassword">Data Akun</a></li>
             <li class="sidebar-menu-item"><a href="/login">Log Out</a></li>
+
         </ul>
     </div>
 

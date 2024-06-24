@@ -16,11 +16,14 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->string('nama_pengirim');
             $table->string('lapangan_dipilih');
+            $table->decimal('harga', 10, 2);
             $table->date('tanggal_bermain');
-            $table->string('jam_dimulai');
-            $table->string('jam_diakhiri');
-            $table->string('equipment')->nullable(); // Kolom equipment yang dapat bernilai NULL
+            $table->time('jam_dimulai');
+            $table->time('jam_diakhiri');
+            $table->string('equipment')->nullable();
+            $table->decimal('total', 10, 2);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->decimal('pendapatan')->nullable();
             $table->timestamps();
         });
     }

@@ -17,5 +17,6 @@ class Booking extends Model
         'jam_diakhiri',
         'equipment', 
         'status',
+        'pendapatan'
     ];
 }
